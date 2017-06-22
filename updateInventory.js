@@ -12,7 +12,7 @@ function updateInventory(arr1, arr2) {
         }
       }
     }
-  return arr3.concat(diff(arr1, arr3)).concat(diff(arr2, arr3)).sort(function(a, b){return a[1] > b[1] ? 1: -1;});
+return arr3.concat(diff(arr1, arr3)).concat(diff(arr2, arr3)).sort((a, b) => a[1] > b[1]);
   // next we abuse modified for 2D array difference function concatinating updated items with uncahged items from cuurent inventory and new items from new inventory and sort basing on string value
   function diff(arr1, arr2) {
     var arr3= [];
