@@ -4,18 +4,31 @@ function updateInventory(arr1, arr2) {
     var len1 = arr1.length;
     var len2 = arr2.length;
     var arr3 = [];
+  // double-for loop to push elements we need to update.
     for(var i = 0; i < len1; i++){
       for(var j = 0; j < len2; j++){
         if(arr1[i][1] == arr2[j][1]){
-          arr3.push([arr2[j][0],arr2[j][1]]);
-        } /*else {
-          arr3.push([arr2[j][0],arr2[j][1]]);
-        }*/
-
+          arr3.push([arr1[i][0] + arr2[j][0],arr2[j][1]]);
+        }
       }
     }
-
-  return arr3;
+  return arr3.concat(diff(arr1, arr3)).concat(diff(arr2, arr3)).sort(function(a, b){return a[1] > b[1] ? 1: -1;});
+  // next we abuse modified for 2D array difference function concatinating updated items with uncahged items from cuurent inventory and new items from new inventory and sort basing on string value
+  function diff(arr1, arr2) {
+    var arr3= [];
+    for(var i = 0; i < arr1.length; i++ ){
+      var unique = true;
+       for(var j=0; j < arr2.length; j++){
+            if(arr1[i][1] == arr2[j][1]){
+                 unique = false;
+                 break;
+            }
+       }
+    if(unique){
+      arr3.push(arr1[i]);}
+    }
+   return arr3;
+  }
 }
 
 // Example inventory lists
