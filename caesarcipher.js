@@ -1,7 +1,7 @@
 function rot13(str) { // LBH QVQ VG!
   var curChar = '';
   var codedStr = [];
-  for (i=0; i < str.length; i++){
+  for (let i=0; i < str.length; i++){
     if (str.charCodeAt(i)  < 65 || str.charCodeAt(i) > 90) {
       curChar = str.charAt(i);
     } else if (str.charCodeAt(i)  < 78) {
