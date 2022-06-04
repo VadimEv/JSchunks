@@ -56,9 +56,45 @@ const mergeSort = (array) => {
 	return array;
 }
 
+const quickSort = (array) => {
+      	let swap = (arr, i, j) => {
+	   let tmp = arr[i];
+	       arr[i] = arr[j];
+               arr[j] = tmp;
+           return arr;
+	}
+
+	let partition = (arr, low, high) => {
+		let pivot = arr[high];
+		let i = low - 1;
+		for (let j = low; j < high; j++){
+			if (arr[j] < pivot){
+				i++;
+				swap(arr, i, j)
+			}
+		}
+	swap(arr, i + 1, high);
+	return i+1;			
+	}
+	
+	let qSort = (arr, low, high) => {
+		if (low < high) {
+			let pivot = partition(arr, low, high);
+			qSort(arr, low, pivot - 1);
+			qSort(arr, pivot + 1, high);
+			return arr;
+		}
+	}
+	
+	const n = array.length;
+	qSort(array, 0, n - 1);
+	
+	return array;
+}
+
 var t1 = performance.now()
 //sorting goes here
-let sortedArray = mergeSort(randomArray);
+let sortedArray = quickSort(randomArray);
 
 var t2 = performance.now()
 console.log('Sorting took ' + (t2 - t1) + ' milliseconds.')
